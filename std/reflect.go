@@ -9,8 +9,7 @@ type myInt int64
 
 func reflectType(x interface{}) {
     t := reflect.TypeOf(x)
-    fmt.Println(obj)
-    fmt.Printf("type:%v, kind:%v\n", t.Name(),t.Kind())
+    fmt.Printf("type:%v, kind:%v\n", t.Name(), t.Kind())
 }
 
 func reflectValue(x interface{}) {
@@ -28,14 +27,20 @@ func reflectValue(x interface{}) {
         fmt.Printf("type is float64, value is %f\n", float64(v.Float()))
     }
 }
-//通过反射设置变量的值
 
+// 通过反射设置变量的值
 func reflectSetValue(x interface{}) {
     v := reflect.ValueOf(x)
     // 反射中使用 Elem()方法获取指针对应的值
     if v.Elem().Kind() == reflect.Int64 {
         v.Elem().SetInt(200)
     }
+}
+
+func testSet() {
+    var a int64 = 100
+    reflectSetValue(&a)
+    fmt.Println(a)
 }
 
 type student struct {
@@ -55,7 +60,9 @@ func (s student) Sleep() string {
     return msg
 }
 
-func testStudent(){
+
+
+func testStudent() {
     stu1 := student{
         Name:  "小王子",
         Score: 90,
@@ -91,7 +98,7 @@ func printMethod(x interface{}) {
 }
 
 func main() {
-    var a float32 =1.234
+    var a float32 = 1.234
     reflectType(a)
     
     var b int8 = 10
