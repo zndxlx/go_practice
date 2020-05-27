@@ -3,7 +3,7 @@ package main
 import (
     "fmt"
 )
-
+//Option模式，在有字段需要指定默认值,时候特别有用
 type Person struct {
     name string
     age int
@@ -24,7 +24,7 @@ func WithAge(age int) option {
 }
 
 func NewPerson(options ...option)(p *Person) {
-    p = &Person{}
+    p = &Person{}  //可以填写默认值
     
     for _, option := range options {
         option(p)
