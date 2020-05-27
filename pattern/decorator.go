@@ -19,6 +19,7 @@ func doubule(n int32) int32 {
 }
 
 func main() {
-    f := logDecorator(doubule)
-    f(4)
+    // f := logDecorator(doubule)
+    // f(4)
+    logDecorator(doubule)(4)
 }
