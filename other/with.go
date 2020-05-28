@@ -3,7 +3,8 @@ package main
 import (
     "fmt"
 )
-//Option模式，在有字段需要指定默认值,时候特别有用
+//Option模式，在有字段需要指定默认值,时候有用, 在参数比较多，保证设置参数没有先后顺序时候有用
+//扩展设置时候也比较方便
 type Person struct {
     name string
     age int
