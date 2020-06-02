@@ -13,7 +13,7 @@ func New(total int) Pool {
     p := make(Pool, total)
     
     for i := 0; i < total; i++ {
-        p <- &Object{name:"laden", age:18}
+        p <- &Object{name: "laden", age: 18}
     }
     
     return p
@@ -21,16 +21,15 @@ func New(total int) Pool {
 
 func main() {
     p := New(2)
-    for {
-        select {
-        case obj := <- p:
-            fmt.Printf("obj=%v\n", obj)
+    
+    select {
+    case obj := <-p:
+        fmt.Printf("obj=%v\n", obj)
         
-            //p <- obj
-        default:
-            // No more objects left — retry later or fail
-            return
-        }
+        p <- obj // 可以用完后又插入到管道
+    default:
+        // No more objects left — retry later or fail
+        return
     }
-
+    
 }
